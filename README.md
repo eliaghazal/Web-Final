@@ -178,7 +178,7 @@ var sorted = readings.OrderByDescending(r => r.Timestamp)
 
 ## 👨‍💻 Author
 
-Elia Ghazal - Web Programming Final Project
+Elia Ghazal, William Ishak, George Khayat, and Bassam Farhat - Web Programming Final Project
 
 ---
 
