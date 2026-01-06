@@ -81,7 +81,7 @@ public class HealthController : Controller
     }
 
     [HttpGet]
-    public IActionResult ExportXml()
+    public IActionResult ExportXml() 
     {
         var readings = _healthDataService.GetAllReadings();
         

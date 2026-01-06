@@ -86,10 +86,12 @@ body {
         transform: scale(1);
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     }
+
     50% {
         transform: scale(1.05);
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     }
+
     100% {
         transform: scale(1);
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
@@ -102,13 +104,19 @@ body {
 
 /* Heartbeat Animation */
 @keyframes heartbeat {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
-    10%, 30% {
+
+    10%,
+    30% {
         transform: scale(1.1);
     }
-    20%, 40% {
+
+    20%,
+    40% {
         transform: scale(1);
     }
 }
@@ -258,6 +266,7 @@ body {
     0% {
         background-color: rgba(40, 167, 69, 0.3);
     }
+
     100% {
         background-color: transparent;
     }
@@ -291,6 +300,7 @@ body {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -412,7 +422,8 @@ body {
 }
 
 /* Icon Styles */
-.fas, .far {
+.fas,
+.far {
     margin-right: 8px;
 }
 
@@ -421,17 +432,17 @@ body {
     .stat-card .display-3 {
         font-size: 2.5rem;
     }
-    
+
     .btn-group .btn {
         display: block;
         width: 100%;
         margin-bottom: 10px;
     }
-    
+
     .stat-box h4 {
         font-size: 1.8rem;
     }
-    
+
     .average-card h3 {
         font-size: 2rem;
     }
@@ -473,6 +484,7 @@ html {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
