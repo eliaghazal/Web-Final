@@ -72,4 +72,4 @@ public class HealthDataService
         _readings.Clear();
         _nextId = 1;
     }
-}
+} 

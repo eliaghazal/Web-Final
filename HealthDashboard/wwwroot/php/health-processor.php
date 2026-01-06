@@ -10,35 +10,49 @@ header('Access-Control-Allow-Methods: GET, POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 // Function to calculate BMI
-function calculateBMI($weight, $height) {
-    if ($height <= 0) return 0;
+function calculateBMI($weight, $height)
+{
+    if ($height <= 0)
+        return 0;
     return $weight / ($height * $height);
 }
 
 // Function to classify heart rate
-function classifyHeartRate($heartRate, $age = 30) {
+function classifyHeartRate($heartRate, $age = 30)
+{
     $maxHR = 220 - $age;
     $percentage = ($heartRate / $maxHR) * 100;
-    
-    if ($percentage < 50) return "Resting";
-    if ($percentage < 60) return "Very Light";
-    if ($percentage < 70) return "Light";
-    if ($percentage < 80) return "Moderate";
-    if ($percentage < 90) return "Hard";
+
+    if ($percentage < 50)
+        return "Resting";
+    if ($percentage < 60)
+        return "Very Light";
+    if ($percentage < 70)
+        return "Light";
+    if ($percentage < 80)
+        return "Moderate";
+    if ($percentage < 90)
+        return "Hard";
     return "Maximum";
 }
 
 // Function to classify body temperature
-function classifyTemperature($temp) {
-    if ($temp < 36.1) return "Low (Hypothermia risk)";
-    if ($temp >= 36.1 && $temp <= 37.2) return "Normal";
-    if ($temp > 37.2 && $temp < 38.0) return "Slightly Elevated";
-    if ($temp >= 38.0 && $temp < 39.0) return "Fever";
+function classifyTemperature($temp)
+{
+    if ($temp < 36.1)
+        return "Low (Hypothermia risk)";
+    if ($temp >= 36.1 && $temp <= 37.2)
+        return "Normal";
+    if ($temp > 37.2 && $temp < 38.0)
+        return "Slightly Elevated";
+    if ($temp >= 38.0 && $temp < 39.0)
+        return "Fever";
     return "High Fever";
 }
 
 // Function to analyze health data
-function analyzeHealthData($readings) {
+function analyzeHealthData($readings)
+{
     $analysis = [
         'total_readings' => count($readings),
         'average_value' => 0,
@@ -47,25 +61,25 @@ function analyzeHealthData($readings) {
         'device_types' => [],
         'recommendations' => []
     ];
-    
+
     $sum = 0;
     foreach ($readings as $reading) {
         $value = $reading['value'];
         $sum += $value;
-        
+
         if ($value < $analysis['min_value']) {
             $analysis['min_value'] = $value;
         }
         if ($value > $analysis['max_value']) {
             $analysis['max_value'] = $value;
         }
-        
+
         $deviceType = $reading['deviceType'];
         if (!isset($analysis['device_types'][$deviceType])) {
             $analysis['device_types'][$deviceType] = 0;
         }
         $analysis['device_types'][$deviceType]++;
-        
+
         // Add recommendations based on device type
         if ($deviceType === 'heart_rate') {
             $classification = classifyHeartRate($value);
@@ -75,11 +89,11 @@ function analyzeHealthData($readings) {
             $analysis['recommendations'][] = "Temperature: {$value}°C - {$classification}";
         }
     }
-    
+
     if (count($readings) > 0) {
         $analysis['average_value'] = $sum / count($readings);
     }
-    
+
     return $analysis;
 }
 
@@ -109,9 +123,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             'timestamp' => date('Y-m-d H:i:s')
         ]
     ];
-    
+
     $analysis = analyzeHealthData($sampleData);
-    
+
     $response = [
         'status' => 'success',
         'message' => 'Health data processed successfully',
@@ -120,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         'processed_at' => date('Y-m-d H:i:s'),
         'php_version' => phpversion()
     ];
-    
+
     echo json_encode($response, JSON_PRETTY_PRINT);
 }
 
@@ -128,17 +142,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = file_get_contents('php://input');
     $data = json_decode($input, true);
-    
+
     if ($data && isset($data['readings'])) {
         $analysis = analyzeHealthData($data['readings']);
-        
+
         $response = [
             'status' => 'success',
             'message' => 'Data analyzed successfully',
             'analysis' => $analysis,
             'processed_at' => date('Y-m-d H:i:s')
         ];
-        
+
         echo json_encode($response, JSON_PRETTY_PRINT);
     } else {
         http_response_code(400);
@@ -153,15 +167,19 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (isset($_GET['calculate_bmi'])) {
     $weight = isset($_GET['weight']) ? floatval($_GET['weight']) : 70;
     $height = isset($_GET['height']) ? floatval($_GET['height']) : 1.75;
-    
+
     $bmi = calculateBMI($weight, $height);
-    
+
     $classification = '';
-    if ($bmi < 18.5) $classification = 'Underweight';
-    elseif ($bmi < 25) $classification = 'Normal weight';
-    elseif ($bmi < 30) $classification = 'Overweight';
-    else $classification = 'Obese';
-    
+    if ($bmi < 18.5)
+        $classification = 'Underweight';
+    elseif ($bmi < 25)
+        $classification = 'Normal weight';
+    elseif ($bmi < 30)
+        $classification = 'Overweight';
+    else
+        $classification = 'Obese';
+
     echo json_encode([
         'status' => 'success',
         'bmi' => round($bmi, 2),
