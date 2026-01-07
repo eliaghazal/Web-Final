@@ -22,7 +22,7 @@ This is a final project for **CSI418L - Web Programming Lab Expo** demonstrating
 | Document | Description |
 |----------|-------------|
 | [📑 Project Report](Web_Report.pdf) | Detailed project documentation and analysis |
-| [📊 Presentation](WebBluetoothPresentation.pdf) | Project presentation slides |
+| [📊 Presentation](WebBluetoothPPT.pdf) | Project presentation slides |
 | [🖼️ Poster](WebBluetoothPoster.png) | Project expo poster |
 
 ---
