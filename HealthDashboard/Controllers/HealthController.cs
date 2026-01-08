@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using HealthDashboard.Models;
 using HealthDashboard.Services;
 using System.Xml.Linq;
@@ -6,6 +7,7 @@ using System.Text.Json;
 
 namespace HealthDashboard.Controllers;
 
+[Authorize]
 public class HealthController : Controller
 {
     private readonly HealthDataService _healthDataService;
