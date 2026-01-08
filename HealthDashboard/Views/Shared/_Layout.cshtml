@@ -39,6 +39,36 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav">
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <li class="nav-item">
+                                <span class="nav-link text-white" data-user-email="@User.Identity.Name">
+                                    <i class="fas fa-user"></i> @User.Identity.Name
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline" id="logoutForm">
+                                    <button type="submit" class="btn btn-link nav-link text-white" id="logoutButton">
+                                        <i class="fas fa-sign-out-alt"></i> Logout
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Account" asp-action="Login">
+                                    <i class="fas fa-sign-in-alt"></i> Login
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Account" asp-action="Register">
+                                    <i class="fas fa-user-plus"></i> Sign Up
+                                </a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -58,6 +88,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animate-enhanced/1.1.1/jquery.animate-enhanced.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <script src="~/js/auth-protection.js" asp-append-version="true"></script>
+    }
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
