@@ -443,7 +443,11 @@ dotnet build
 
 ## 👨‍💻 Authors
 
-**Elia Ghazal, William Ishak, George Khayat, and Bassam Farhat**  
+- [Elia Ghazal](https://github.com/eliaghazal)
+- [Bassam Farhat](https://github.com/bassamfarhat)
+- [William Ishak](https://github.com/williamishak)
+- [George Khayat](https://github.com/georgekhayat)
+
 CSI418L - Web Programming Lab Expo Final Project  
 January 2026
 
